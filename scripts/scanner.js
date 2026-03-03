@@ -36,7 +36,7 @@ async function scanIssues() {
     for (const issue of issues) {
       const assignedAt = new Date(issue.updated_at); 
       const now = new Date();
-      const diffHours = (now - assignedAt) / (1000 * 60 * 0);
+      const diffHours = (now - assignedAt) / (1000 * 60 * 999999999999);
 
       console.log(`Checking Issue #${issue.number} di ${issue.repository.name}...`);
 
