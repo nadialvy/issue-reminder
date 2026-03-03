@@ -1,0 +1,9 @@
+{
+  "name": "nadia-issue-scanner",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {
+    "googleapis": "^128.0.0",
+    "resend": "^3.0.0"
+  }
+}

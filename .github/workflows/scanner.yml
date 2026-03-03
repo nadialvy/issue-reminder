@@ -1,0 +1,29 @@
+name: Assigned Issue Scanner
+on:
+  schedule:
+    - cron: '0 * * * *'
+  workflow_dispatch: 
+
+jobs:
+  scan_and_remind:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Dependencies
+        run: npm install googleapis resend
+
+      - name: Run Scanner Script
+        run: node scripts/scanner.js
+        env:
+          MY_PERSONAL_CLASSIC_TOKEN: ${{ secrets.MY_PERSONAL_CLASSIC_TOKEN }}
+          NADIA_RESEND_API_KEY: ${{ secrets.NADIA_RESEND_API_KEY }}
+          NADIA_EMAIL: ${{ secrets.NADIA_EMAIL }}
+          NADIA_GOOGLE_CALENDAR_ID: ${{ secrets.NADIA_GOOGLE_CALENDAR_ID }}
+          NADIA_GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.NADIA_GOOGLE_SERVICE_ACCOUNT_JSON }}
